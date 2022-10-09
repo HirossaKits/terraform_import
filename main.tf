@@ -59,3 +59,70 @@ resource "aws_internet_gateway" "igw" {
         Name = "igw"
     }
 }
+
+# Route Table
+
+resource "aws_route_table" "public_rtb" {
+    vpc_id = aws_vpc.main.id
+
+    route {
+        cider_block = "0.0.0.0/0"
+        gateway_id = aws_internet_geteway.igw.id
+    }
+
+    tags = {
+        Name = "public_rtb"
+    }
+}
+
+resource "aws_route_table" "private_rtb" {
+    vpc_id = "aws_vpc.main.id"
+
+    route {
+        cider_block = "0.0.0.0/0"
+        gateway_id = aws_internet_geteway.igw.id
+    }
+
+    tags = {
+        Name = "private_rtb"
+    }
+}
+
+resource "aws_route_table" "default_rtb" {
+    vpc_id = aws_vpc.main.id
+
+    route {
+        cider_block = "0.0.0.0/0"
+        gateway_id = aws_internet_geteway.igw.id
+    }
+
+    tags = {
+        Name = "default_rtb"
+    }
+}
+
+# Security Group
+
+resource "aws_security_group" "db_sgr" {
+    vpc_id = aws_vpc.main.id
+        
+    tags = {
+        Name = "db_sgr"
+    }
+}
+
+resource "aws_security_group" "alb_sgr" {
+    vpc_id = aws_vpc.main.id
+        
+    tags = {
+        Name = "alb_sgr"
+    }
+}
+
+resource "aws_security_group" "ecs_sgr" {
+    vpc_id = aws_vpc.main.id
+        
+    tags = {
+        Name = "ecs_sgr"
+    }
+}

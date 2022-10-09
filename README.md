@@ -27,3 +27,15 @@ terraform import aws_subnet.public_4 {subnet_id}
 ```shell
 terraform import aws_internet_gateway.igw {internet_gateway_id}
 ```
+
+[route_table](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table)
+
+```shell
+terraform import aws_route_table.public_rt {route_table_id}
+```
+
+[security_group](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group)
+
+```shell
+terraform import aws_security_group.elb_sg sg-903004f8
+```
